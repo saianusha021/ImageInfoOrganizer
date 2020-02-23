@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TakeASnapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Take A Snap"
         // Do any additional setup after loading the view.
     }
 
