@@ -129,19 +129,19 @@
 			children = (
 				A886AB5223EA7407002571DA /* AppDelegate.swift */,
 				A807B6452407329100D51DEE /* LoginViewController.swift */,
-				A886AB5423EA7407002571DA /* TakeASnapViewController.swift */,
 				A807B64724073EC300D51DEE /* MainTabBarController.swift */,
-				A886AB5623EA7407002571DA /* Main.storyboard */,
-				A886AB5C23EA7408002571DA /* Assets.xcassets */,
-				A886AB5E23EA7408002571DA /* LaunchScreen.storyboard */,
-				A886AB6123EA7408002571DA /* Info.plist */,
-				A886AB5923EA7407002571DA /* ImageInfoorganizer.xcdatamodeld */,
-				A80CF1BE2408A05300AF0563 /* RecognizedTextDataSource.swift */,
+				A886AB5423EA7407002571DA /* TakeASnapViewController.swift */,
 				A80CF1C02408A59800AF0563 /* SnappedContentViewController.swift */,
 				A80CF1C42408C38300AF0563 /* BusinessCardTextParser.swift */,
 				A80856882409C0D100A53EAD /* ReceiptTextParser.swift */,
-				A8085696240B109800A53EAD /* BusinessCardContentManager.swift */,
 				A808D474240CB6BB0095722B /* CoreDataContentManager.swift */,
+				A8085696240B109800A53EAD /* BusinessCardContentManager.swift */,
+				A80CF1BE2408A05300AF0563 /* RecognizedTextDataSource.swift */,
+				A886AB5623EA7407002571DA /* Main.storyboard */,
+				A886AB5923EA7407002571DA /* ImageInfoorganizer.xcdatamodeld */,
+				A886AB5E23EA7408002571DA /* LaunchScreen.storyboard */,
+				A886AB6123EA7408002571DA /* Info.plist */,
+				A886AB5C23EA7408002571DA /* Assets.xcassets */,
 			);
 			path = ImageInfoorganizer;
 			sourceTree = "<group>";
