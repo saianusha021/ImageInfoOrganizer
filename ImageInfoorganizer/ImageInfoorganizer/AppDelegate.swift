@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        print("app delegate")
+        
         var loggedIn = UserDefaults.standard.string(forKey: "isLoggedIn")
         if  loggedIn == nil {
             UserDefaults.standard.set( "NO", forKey: "isLoggedIn")
@@ -24,6 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         if loggedIn! == "NO" {
             showLogInView()
+        }
+        
+        let businessCC = retrievemanagedObjsforEntity(entityName: "BusinessCardContent")
+        for data in businessCC as! [BusinessCardContent] {
+         print(data.value(forKey: "businessName") as! String)
         }
         return true
     }
@@ -89,9 +94,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     // MARK: - Core Data Saving support
+    
+    
 
     func saveContext () {
         let context = persistentContainer.viewContext
+        
         if context.hasChanges {
             do {
                 try context.save()
@@ -103,6 +111,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    
+    
+    
 
 }
 

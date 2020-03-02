@@ -12,8 +12,6 @@ import VisionKit
 
 class TakeASnapViewController: UIViewController {
 
-    
-     var textRecognitionRequest = VNRecognizeTextRequest()
     enum ScanMode: Int {
         case businessCards
         case receipts
@@ -21,20 +19,30 @@ class TakeASnapViewController: UIViewController {
     }
     
     var scanMode: ScanMode = .receipts
+    var textParser: (NSObject & RecognizedTextDataSource)?
+    var textRecognitionRequest = VNRecognizeTextRequest()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Take A Snap"
         
         textRecognitionRequest = VNRecognizeTextRequest(completionHandler: { (request, error) in
                   
+                guard let textParser = self.textParser else {
+                               print("TextParser is not set")
+                               return
+                           }
                    if let results = request.results, !results.isEmpty {
                        if let requestResults = request.results as? [VNRecognizedTextObservation] {
                            DispatchQueue.main.async {
-                            print(request.results)
+                            textParser.addRecognizedText(recognizedText: requestResults)
                            }
                        }
                    }
                })
+        
+        textRecognitionRequest.recognitionLevel = .accurate
+        textRecognitionRequest.usesLanguageCorrection = true
     }
     @IBAction func snapButtonClicked(_ sender: UIControl) {
         guard let scanMode = ScanMode(rawValue: sender.tag) else { return }
@@ -62,6 +70,15 @@ class TakeASnapViewController: UIViewController {
 }
 extension TakeASnapViewController: VNDocumentCameraViewControllerDelegate {
     func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
+        
+        switch scanMode {
+        case .receipts:
+            self.textParser = BusinessCardTextParser()
+        case .businessCards:
+            self.textParser = BusinessCardTextParser()
+        default:
+            self.textParser = BusinessCardTextParser()
+        }
 
         controller.dismiss(animated: true) {
             DispatchQueue.global(qos: .userInitiated).async {

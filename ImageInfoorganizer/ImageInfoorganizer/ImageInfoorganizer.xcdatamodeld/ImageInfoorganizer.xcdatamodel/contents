@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18F2058" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BusinessCardContent" representedClassName="BusinessCardContent" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="businessName" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="phNumber" optional="YES" attributeType="String"/>
+        <attribute name="website" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+        <attribute name="itemName" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="ReceiptContent" representedClassName="ReceiptContent" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="items" optional="YES" attributeType="Transformable"/>
+        <attribute name="phNumber" optional="YES" attributeType="String"/>
+        <attribute name="storeName" optional="YES" attributeType="String"/>
+        <relationship name="itemsRelatn" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item"/>
+    </entity>
+    <elements>
+        <element name="BusinessCardContent" positionX="-54" positionY="-9" width="128" height="118"/>
+        <element name="ReceiptContent" positionX="124.64453125" positionY="80.19140625" width="128" height="118"/>
+        <element name="Item" positionX="389.60546875" positionY="108.22265625" width="128" height="73"/>
+    </elements>
 </model>
