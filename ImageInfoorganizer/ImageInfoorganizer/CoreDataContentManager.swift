@@ -13,8 +13,8 @@ class CoreDataContentManager: NSObject {
       
     static func createObjforEntity(entityName:String)->NSManagedObject {
          let context = managedContext()
-          let receiptEntity = NSEntityDescription.entity(forEntityName: entityName, in: context)
-          let newreceiptContent = NSManagedObject(entity: receiptEntity!, insertInto: context)
+          let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
+          let newreceiptContent = NSManagedObject(entity: entity!, insertInto: context)
           return newreceiptContent
           
       }
@@ -26,7 +26,7 @@ class CoreDataContentManager: NSObject {
           var managedObjs = [NSManagedObject]()
          do {
              let result = try context.fetch(request)
-          print(result)
+             print(result)
           if result.count != 0 {
               managedObjs = result as! [NSManagedObject]
           }

@@ -9,12 +9,13 @@
 import UIKit
 import Vision
 
+
 class BusinessCardTextParser: NSObject,RecognizedTextDataSource {
     
     var businessCardContent:BusinessCardContent
     
     override init() {
-        self.businessCardContent = CoreDataContentManager.createObjforEntity(entityName: "BusinessCard") as! BusinessCardContent
+        self.businessCardContent = CoreDataContentManager.createObjforEntity(entityName: "BusinessCardContent") as! BusinessCardContent
     }
     
    func addRecognizedText(recognizedText: [VNRecognizedTextObservation]) {

@@ -73,7 +73,7 @@ extension TakeASnapViewController: VNDocumentCameraViewControllerDelegate {
         
         switch scanMode {
         case .receipts:
-            self.textParser = BusinessCardTextParser()
+            self.textParser = ReceiptTextParser()
         case .businessCards:
             self.textParser = BusinessCardTextParser()
         default:

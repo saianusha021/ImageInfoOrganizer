@@ -26,10 +26,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             showLogInView()
         }
         
-        let businessCC = retrievemanagedObjsforEntity(entityName: "BusinessCardContent")
-        for data in businessCC as! [BusinessCardContent] {
-         print(data.value(forKey: "businessName") as! String)
-        }
+//        let word = "1.00"
+//        print((Float(word) != nil))
+//        let range = NSRange(location: 0, length: word.utf16.count)
+//               let regex = try! NSRegularExpression(pattern: "[0-9]{1}.[0-9]{2}")
+//               if regex.firstMatch(in: word, options: [], range: range) != nil {
+//                  print("matches")
+//               }
+        
+//        let businessCC = CoreDataContentManager.retrievemanagedObjsforEntity(entityName: "BusinessCardContent")
+//        for data in businessCC as! [BusinessCardContent] {
+//         print(data.value(forKey: "businessName") as! String)
+//        }
         return true
     }
    

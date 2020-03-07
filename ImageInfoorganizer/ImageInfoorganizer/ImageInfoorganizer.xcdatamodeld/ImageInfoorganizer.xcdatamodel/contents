@@ -13,6 +13,7 @@
     </entity>
     <entity name="ReceiptContent" representedClassName="ReceiptContent" syncable="YES" codeGenerationType="class">
         <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="String"/>
         <attribute name="items" optional="YES" attributeType="Transformable"/>
         <attribute name="phNumber" optional="YES" attributeType="String"/>
         <attribute name="storeName" optional="YES" attributeType="String"/>
@@ -20,7 +21,7 @@
     </entity>
     <elements>
         <element name="BusinessCardContent" positionX="-54" positionY="-9" width="128" height="118"/>
-        <element name="ReceiptContent" positionX="124.64453125" positionY="80.19140625" width="128" height="118"/>
         <element name="Item" positionX="389.60546875" positionY="108.22265625" width="128" height="73"/>
+        <element name="ReceiptContent" positionX="124.64453125" positionY="80.19140625" width="128" height="133"/>
     </elements>
 </model>
