@@ -25,19 +25,19 @@ import CoreData
         if loggedIn! == "NO" {
             showLogInView()
         }
-        do {
-         let detector = try NSDataDetector(types: NSTextCheckingAllTypes)
-        let text = "(248)"
-         let matches = detector.matches(in: text, options: .init(), range:NSRange(location: 0, length: text.count))
-            for match in matches {
-                if (match.resultType == .phoneNumber) {
-                    print("matches")
-                }
-            }
-        }
-        catch {
-            print(error)
-        }
+//        do {
+//         let detector = try NSDataDetector(types: NSTextCheckingAllTypes)
+//        let text = "(248)"
+//         let matches = detector.matches(in: text, options: .init(), range:NSRange(location: 0, length: text.count))
+//            for match in matches {
+//                if (match.resultType == .phoneNumber) {
+//                    print("matches")
+//                }
+//            }
+//        }
+//        catch {
+//            print(error)
+//        }
         
         return true
     }

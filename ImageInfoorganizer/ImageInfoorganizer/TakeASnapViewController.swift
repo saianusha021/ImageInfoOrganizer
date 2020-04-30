@@ -19,7 +19,7 @@ class TakeASnapViewController: UIViewController {
     }
     
     var scanMode: ScanMode = .receipts
-    var textParser: (NSObject & RecognizedTextDataSource)?
+    var textParser: (RecognizedTextDataSource)?
     var textRecognitionRequest = VNRecognizeTextRequest()
     
     override func viewDidLoad() {

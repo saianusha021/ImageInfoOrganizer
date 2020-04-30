@@ -10,14 +10,16 @@ import UIKit
 
 class SnappedContentViewController: UIViewController {
    
-
+    var snappedContentArray:[NSObject]?
+    
     @IBOutlet weak var tableView: UITableView!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("ViewDidLoad")
         let obj = CoreDataContentManager.retrievemanagedObjsforEntity(entityName: "ReceiptContent")
         for data in obj as! [ReceiptContent] {
             var itemsObj = data.value(forKey: "items") as! Items
-
             for item in itemsObj.items {
                 print("items name",item.itemName)
             }
@@ -52,7 +54,7 @@ extension SnappedContentViewController:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = ""
+        cell.textLabel?.text = "cell"
         return cell
     }
     

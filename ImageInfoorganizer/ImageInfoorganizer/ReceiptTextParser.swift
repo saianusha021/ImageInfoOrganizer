@@ -10,7 +10,7 @@ import UIKit
 import Vision
 
 
-class ReceiptTextParser: NSObject,RecognizedTextDataSource {
+class ReceiptTextParser: RecognizedTextDataSource {
     var receiptContentObj:ReceiptContent
     var fullReceiptContentArray = [String]()
     var defaultReceiptStartingWords:[String]
@@ -27,12 +27,13 @@ class ReceiptTextParser: NSObject,RecognizedTextDataSource {
         case notFound
     }
     
-    override init() {
+     init() {
+       
            self.receiptContentObj = CoreDataContentManager.createObjforEntity(entityName: "ReceiptContent") as! ReceiptContent
         defaultReceiptStartingWords = ["grocery","item","qty","amount","price","cost"]
         defaultReceiptEndingWords = ["tax","total","sub"]
         defaultDescriptionWords = ["reg","regular","disc","discount","diso","markdown","/lb","each","tare","FW","lb","produce","lh","bal","new","sale","loyalty"]+defaultReceiptStartingWords+defaultReceiptEndingWords
-        
+       
        }
     
    func addRecognizedText(recognizedText: [VNRecognizedTextObservation]) {
