@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A807B6462407329100D51DEE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A807B6452407329100D51DEE /* LoginViewController.swift */; };
 		A807B64824073EC300D51DEE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A807B64724073EC300D51DEE /* MainTabBarController.swift */; };
-		A80856892409C0D100A53EAD /* ReceiptTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80856882409C0D100A53EAD /* ReceiptTextParser.swift */; };
 		A8085692240A233B00A53EAD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8085691240A233B00A53EAD /* CoreData.framework */; };
 		A8085697240B109800A53EAD /* BusinessCardContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8085696240B109800A53EAD /* BusinessCardContentManager.swift */; };
 		A808D475240CB6BB0095722B /* CoreDataContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808D474240CB6BB0095722B /* CoreDataContentManager.swift */; };
@@ -17,7 +16,11 @@
 		A8093F2F242BCAA200A4EF50 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8093F2E242BCAA200A4EF50 /* Item.swift */; };
 		A80CF1BF2408A05300AF0563 /* RecognizedTextDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80CF1BE2408A05300AF0563 /* RecognizedTextDataSource.swift */; };
 		A80CF1C12408A59800AF0563 /* SnappedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80CF1C02408A59800AF0563 /* SnappedContentViewController.swift */; };
-		A80CF1C52408C38300AF0563 /* BusinessCardTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80CF1C42408C38300AF0563 /* BusinessCardTextParser.swift */; };
+		A862F95E24695FE900404A2C /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862F95D24695FE900404A2C /* StringExtensions.swift */; };
+		A862F9622469678300404A2C /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862F9612469678300404A2C /* Parser.swift */; };
+		A862F96524696A3800404A2C /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862F96424696A3800404A2C /* Details.swift */; };
+		A862F9672469809900404A2C /* ReceiptTextHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862F9662469809900404A2C /* ReceiptTextHandler.swift */; };
+		A862F969246980FF00404A2C /* BusinessCardTextHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862F968246980FF00404A2C /* BusinessCardTextHandler.swift */; };
 		A886AB5323EA7407002571DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A886AB5223EA7407002571DA /* AppDelegate.swift */; };
 		A886AB5523EA7407002571DA /* TakeASnapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A886AB5423EA7407002571DA /* TakeASnapViewController.swift */; };
 		A886AB5823EA7407002571DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A886AB5623EA7407002571DA /* Main.storyboard */; };
@@ -48,7 +51,6 @@
 /* Begin PBXFileReference section */
 		A807B6452407329100D51DEE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A807B64724073EC300D51DEE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		A80856882409C0D100A53EAD /* ReceiptTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTextParser.swift; sourceTree = "<group>"; };
 		A8085691240A233B00A53EAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A8085696240B109800A53EAD /* BusinessCardContentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCardContentManager.swift; sourceTree = "<group>"; };
 		A808D474240CB6BB0095722B /* CoreDataContentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataContentManager.swift; sourceTree = "<group>"; };
@@ -56,7 +58,11 @@
 		A8093F2E242BCAA200A4EF50 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A80CF1BE2408A05300AF0563 /* RecognizedTextDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedTextDataSource.swift; sourceTree = "<group>"; };
 		A80CF1C02408A59800AF0563 /* SnappedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappedContentViewController.swift; sourceTree = "<group>"; };
-		A80CF1C42408C38300AF0563 /* BusinessCardTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCardTextParser.swift; sourceTree = "<group>"; };
+		A862F95D24695FE900404A2C /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		A862F9612469678300404A2C /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		A862F96424696A3800404A2C /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
+		A862F9662469809900404A2C /* ReceiptTextHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTextHandler.swift; sourceTree = "<group>"; };
+		A862F968246980FF00404A2C /* BusinessCardTextHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCardTextHandler.swift; sourceTree = "<group>"; };
 		A886AB4F23EA7407002571DA /* ImageInfoorganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageInfoorganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A886AB5223EA7407002571DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A886AB5423EA7407002571DA /* TakeASnapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeASnapViewController.swift; sourceTree = "<group>"; };
@@ -136,8 +142,8 @@
 				A807B64724073EC300D51DEE /* MainTabBarController.swift */,
 				A886AB5423EA7407002571DA /* TakeASnapViewController.swift */,
 				A80CF1C02408A59800AF0563 /* SnappedContentViewController.swift */,
-				A80CF1C42408C38300AF0563 /* BusinessCardTextParser.swift */,
-				A80856882409C0D100A53EAD /* ReceiptTextParser.swift */,
+				A862F968246980FF00404A2C /* BusinessCardTextHandler.swift */,
+				A862F9662469809900404A2C /* ReceiptTextHandler.swift */,
 				A808D474240CB6BB0095722B /* CoreDataContentManager.swift */,
 				A8085696240B109800A53EAD /* BusinessCardContentManager.swift */,
 				A80CF1BE2408A05300AF0563 /* RecognizedTextDataSource.swift */,
@@ -148,6 +154,9 @@
 				A886AB5C23EA7408002571DA /* Assets.xcassets */,
 				A8093F28242BC54A00A4EF50 /* Items.swift */,
 				A8093F2E242BCAA200A4EF50 /* Item.swift */,
+				A862F95D24695FE900404A2C /* StringExtensions.swift */,
+				A862F9612469678300404A2C /* Parser.swift */,
+				A862F96424696A3800404A2C /* Details.swift */,
 			);
 			path = ImageInfoorganizer;
 			sourceTree = "<group>";
@@ -302,18 +311,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8085697240B109800A53EAD /* BusinessCardContentManager.swift in Sources */,
-				A80856892409C0D100A53EAD /* ReceiptTextParser.swift in Sources */,
 				A886AB5523EA7407002571DA /* TakeASnapViewController.swift in Sources */,
+				A862F9622469678300404A2C /* Parser.swift in Sources */,
 				A808D475240CB6BB0095722B /* CoreDataContentManager.swift in Sources */,
 				A8093F29242BC54A00A4EF50 /* Items.swift in Sources */,
 				A80CF1BF2408A05300AF0563 /* RecognizedTextDataSource.swift in Sources */,
 				A886AB5323EA7407002571DA /* AppDelegate.swift in Sources */,
 				A8093F2F242BCAA200A4EF50 /* Item.swift in Sources */,
 				A807B64824073EC300D51DEE /* MainTabBarController.swift in Sources */,
+				A862F969246980FF00404A2C /* BusinessCardTextHandler.swift in Sources */,
 				A807B6462407329100D51DEE /* LoginViewController.swift in Sources */,
+				A862F95E24695FE900404A2C /* StringExtensions.swift in Sources */,
 				A886AB5B23EA7407002571DA /* ImageInfoorganizer.xcdatamodeld in Sources */,
 				A80CF1C12408A59800AF0563 /* SnappedContentViewController.swift in Sources */,
-				A80CF1C52408C38300AF0563 /* BusinessCardTextParser.swift in Sources */,
+				A862F96524696A3800404A2C /* Details.swift in Sources */,
+				A862F9672469809900404A2C /* ReceiptTextHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,6 +25,9 @@ import CoreData
         if loggedIn! == "NO" {
             showLogInView()
         }
+        
+        var range = "dfgy sai grocrt".contains("sai grocers")
+        print(range)
 //        do {
 //         let detector = try NSDataDetector(types: NSTextCheckingAllTypes)
 //        let text = "(248)"

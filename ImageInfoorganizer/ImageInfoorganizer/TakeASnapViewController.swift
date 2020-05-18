@@ -65,23 +65,21 @@ class TakeASnapViewController: UIViewController {
                print(error)
            }
        }
-    
-    
 }
 extension TakeASnapViewController: VNDocumentCameraViewControllerDelegate {
     func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
         
         switch scanMode {
         case .receipts:
-            self.textParser = ReceiptTextParser()
+            self.textParser = ReceiptTextHandler()
         case .businessCards:
-            self.textParser = BusinessCardTextParser()
+            self.textParser = BusinessCardTextHandler()
         default:
-            self.textParser = BusinessCardTextParser()
+            self.textParser = BusinessCardTextHandler()
         }
 
         controller.dismiss(animated: true) {
-            DispatchQueue.global(qos: .userInitiated).async {
+            DispatchQueue.global(qos: .userInitiated).sync {
                 for pageNumber in 0 ..< scan.pageCount {
                     let image = scan.imageOfPage(at: pageNumber)
                     self.processImage(image: image)

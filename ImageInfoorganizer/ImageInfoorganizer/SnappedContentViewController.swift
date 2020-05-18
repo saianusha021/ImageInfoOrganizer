@@ -10,21 +10,33 @@ import UIKit
 
 class SnappedContentViewController: UIViewController {
    
-    var snappedContentArray:[NSObject]?
+    var snappedReceiptItems:[Item] = []
+    var snappedReceipts:[ReceiptContent] = []
+    var snappedCategories = ["Items","BusinessCards"]
     
     @IBOutlet weak var tableView: UITableView!
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ViewDidLoad")
+        
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
         let obj = CoreDataContentManager.retrievemanagedObjsforEntity(entityName: "ReceiptContent")
         for data in obj as! [ReceiptContent] {
-            var itemsObj = data.value(forKey: "items") as! Items
-            for item in itemsObj.items {
+            
+            // displaying items in store
+            
+            let itemsObj = data.value(forKey: "items") as! Items
+            snappedReceiptItems.append(contentsOf:itemsObj.items)
+            for item in snappedReceiptItems {
                 print("items name",item.itemName)
             }
+            
+            //Displaying Store Name
+            let storeName = data.value(forKey: "storeName") as! String
+            snappedReceipts.append(data)
         }
-        // Do any additional setup after loading the view.
     }
     
 
@@ -39,28 +51,35 @@ class SnappedContentViewController: UIViewController {
     */
 
 }
+
 extension SnappedContentViewController:UITableViewDataSource {
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return snappedCategories.count
     }
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "section title"
+        return snappedCategories[section]
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        
+        if(section == 0) {
+            return snappedReceipts.count
+        }
+        
+         return 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = "cell"
+        cell.textLabel?.text = snappedReceipts[indexPath.row].storeName
         return cell
     }
-    
-    
-    
 }
+
+
 extension SnappedContentViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

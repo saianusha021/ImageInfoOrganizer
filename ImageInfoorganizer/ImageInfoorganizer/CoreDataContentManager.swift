@@ -26,7 +26,6 @@ class CoreDataContentManager: NSObject {
           var managedObjs = [NSManagedObject]()
          do {
              let result = try context.fetch(request)
-             print(result)
           if result.count != 0 {
               managedObjs = result as! [NSManagedObject]
           }
