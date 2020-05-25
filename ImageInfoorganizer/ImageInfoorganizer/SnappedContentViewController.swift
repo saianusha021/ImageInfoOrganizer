@@ -12,13 +12,13 @@ class SnappedContentViewController: UIViewController {
    
     var snappedReceiptItems:[Item] = []
     var snappedReceipts:[ReceiptContent] = []
-    var snappedCategories = ["Items","BusinessCards"]
+    var snappedCategories = ["Stores","BusinessCards"]
     
     @IBOutlet weak var tableView: UITableView!
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "Snapped Content"
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -79,6 +79,11 @@ extension SnappedContentViewController:UITableViewDataSource {
 
 extension SnappedContentViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let itemsContentVC = storyboard.instantiateViewController(withIdentifier: "itemsContentVC") as! ItemsContentViewController
+        let receiptContent = snappedReceipts[indexPath.row]
+        itemsContentVC.itemsArray = receiptContent.items?.items
+        itemsContentVC.storeName = receiptContent.storeName
+        self.navigationController?.pushViewController(itemsContentVC, animated:true)
     }
 }

@@ -46,20 +46,53 @@ class ReceiptTextHandler: RecognizedTextDataSource {
          }
       print("final StoreName:",detailsObj.name)
     let itemsArray=Parser.parseForItemsInItemsString(itemDetailsString:itemDetailString)
-    let filteredItemsArr = filteredItems(itemsArr: itemsArray, forStore: detailsObj.name)
-    saveTheItemsToCoreData(detailsObj:detailsObj,items:filteredItemsArr)
+   // let filteredItemsArr = filteredItems(itemsArr: itemsArray, forStore: detailsObj.name)
+    filterItemsAndSave(itemsArr: itemsArray, detailsObj: detailsObj)
+    
+   // saveTheItemsToCoreData(detailsObj:detailsObj,items:filteredItemsArr)
    }
-    func filteredItems(itemsArr:[String],forStore:String)->[String] {
-        var itemNamesArr:[String] = itemsArr
-        var existingItemNames = CoreDataContentManager.getItemNamesForStoreName(storeName: forStore)
-        for item in existingItemNames {
-            if(itemsArr.contains(item.itemName)) {
-              var index = itemsArr.firstIndex(of: item.itemName)
-                itemNamesArr.remove(at: index!)
-            }
+    
+    func filterItemsAndSave(itemsArr:[String],detailsObj:Details) {
+        var newItemNamesArr:[String] = itemsArr
+        var receiptContent = CoreDataContentManager.getItemNamesForStoreName(storeName: detailsObj.name)
+        if(receiptContent == nil) {
+            saveTheItemsToCoreData(detailsObj:detailsObj,items:itemsArr)
         }
-        return itemNamesArr
+        else {
+            let existingItemObjArr = receiptContent?.items?.items ?? [Item]()
+            for item in existingItemObjArr {
+                if(itemsArr.contains(item.itemName)) {
+                let index = newItemNamesArr.firstIndex(of: item.itemName)
+                    newItemNamesArr.remove(at: index!)
+                }
+            }
+            print("New List")
+            print(newItemNamesArr)
+            var newItemObjArr = [Item]()
+            for name in newItemNamesArr {
+            let itm = Item(itemName: name)
+            newItemObjArr.append(itm)
+            }
+            let newItemsList = existingItemObjArr + newItemObjArr
+            receiptContent?.items?.items = newItemsList
+            CoreDataContentManager.saveContext()
+        }
     }
+    
+    
+//    func filteredItems(itemsArr:[String],forStore:String)->[String] {
+//        var itemNamesArr:[String] = itemsArr
+//        var existingItemNames = CoreDataContentManager.getItemNamesForStoreName(storeName: forStore)
+//        for item in existingItemNames {
+//            if(itemsArr.contains(item.itemName)) {
+//              var index = itemNamesArr.firstIndex(of: item.itemName)
+//                itemNamesArr.remove(at: index!)
+//            }
+//        }
+//        print("New List")
+//        print(itemNamesArr)
+//        return itemNamesArr
+//    }
     func StoreName(storeNameStr:String)->String {
         let strNameStrLwrCased = storeNameStr.lowercased()
         var matchedStoreName = ""
@@ -73,7 +106,7 @@ class ReceiptTextHandler: RecognizedTextDataSource {
                 let midIndex:Int = strNameLwrCased.count/2
                 for i in 0...midIndex {
                     let storeNameSubStrfromStart = strNameLwrCased.substring(from: i)
-                    print(storeNameSubStrfromStart)
+                   // print(storeNameSubStrfromStart)
                     if(strNameStrLwrCased.contains(storeNameSubStrfromStart)) {
                         var  newMatchedIndex = strNameStrLwrCased.indices(of:storeNameSubStrfromStart.lowercased())[0]
                         if(newMatchedIndex<matchedIndex) {
@@ -84,7 +117,7 @@ class ReceiptTextHandler: RecognizedTextDataSource {
                     }
                     let storeNameSubStrfromEnd = strNameLwrCased.substring(to:strNameLwrCased.count-1-i)
                     if(strNameStrLwrCased.contains(storeNameSubStrfromEnd)) {
-                        print(storeNameSubStrfromEnd)
+                       // print(storeNameSubStrfromEnd)
                         var  newMatchedIndex = strNameStrLwrCased.indices(of:storeNameSubStrfromEnd.lowercased())[0]
                        if(newMatchedIndex<matchedIndex) {
                            matchedIndex = newMatchedIndex
@@ -111,7 +144,7 @@ class ReceiptTextHandler: RecognizedTextDataSource {
         
         for eachLine in fullReceiptContentArray {
             i+=1
-            if(i>=0 && i<2) {
+            if(i>=0 && i<=2) {
                  storeNameStr =  storeNameStr+" "+fullReceiptContentArray[i]
             }
           if( i>3) {
@@ -131,7 +164,7 @@ class ReceiptTextHandler: RecognizedTextDataSource {
                         itemStartingPos = i
                     }
                     else {
-                        itemStartingPos = i-3
+                        itemStartingPos = i-2
                     }
                     // locateStoreContentFromItemEndPos()
                     break

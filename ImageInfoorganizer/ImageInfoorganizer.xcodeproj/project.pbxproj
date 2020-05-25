@@ -16,6 +16,7 @@
 		A8093F2F242BCAA200A4EF50 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8093F2E242BCAA200A4EF50 /* Item.swift */; };
 		A80CF1BF2408A05300AF0563 /* RecognizedTextDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80CF1BE2408A05300AF0563 /* RecognizedTextDataSource.swift */; };
 		A80CF1C12408A59800AF0563 /* SnappedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80CF1C02408A59800AF0563 /* SnappedContentViewController.swift */; };
+		A818F95C247B73E200FAA2EC /* ItemsContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A818F95B247B73E200FAA2EC /* ItemsContentViewController.swift */; };
 		A862F95E24695FE900404A2C /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862F95D24695FE900404A2C /* StringExtensions.swift */; };
 		A862F9622469678300404A2C /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862F9612469678300404A2C /* Parser.swift */; };
 		A862F96524696A3800404A2C /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862F96424696A3800404A2C /* Details.swift */; };
@@ -58,6 +59,7 @@
 		A8093F2E242BCAA200A4EF50 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A80CF1BE2408A05300AF0563 /* RecognizedTextDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedTextDataSource.swift; sourceTree = "<group>"; };
 		A80CF1C02408A59800AF0563 /* SnappedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappedContentViewController.swift; sourceTree = "<group>"; };
+		A818F95B247B73E200FAA2EC /* ItemsContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsContentViewController.swift; sourceTree = "<group>"; };
 		A862F95D24695FE900404A2C /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		A862F9612469678300404A2C /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		A862F96424696A3800404A2C /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				A807B64724073EC300D51DEE /* MainTabBarController.swift */,
 				A886AB5423EA7407002571DA /* TakeASnapViewController.swift */,
 				A80CF1C02408A59800AF0563 /* SnappedContentViewController.swift */,
+				A818F95B247B73E200FAA2EC /* ItemsContentViewController.swift */,
 				A862F968246980FF00404A2C /* BusinessCardTextHandler.swift */,
 				A862F9662469809900404A2C /* ReceiptTextHandler.swift */,
 				A808D474240CB6BB0095722B /* CoreDataContentManager.swift */,
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8085697240B109800A53EAD /* BusinessCardContentManager.swift in Sources */,
+				A818F95C247B73E200FAA2EC /* ItemsContentViewController.swift in Sources */,
 				A886AB5523EA7407002571DA /* TakeASnapViewController.swift in Sources */,
 				A862F9622469678300404A2C /* Parser.swift in Sources */,
 				A808D475240CB6BB0095722B /* CoreDataContentManager.swift in Sources */,

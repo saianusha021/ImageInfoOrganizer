@@ -33,9 +33,9 @@ class CoreDataContentManager: NSObject {
                  }
                    return managedObjs
       }
-    static func getItemNamesForStoreName(storeName:String)->[Item]{
+    static func getItemNamesForStoreName(storeName:String)->ReceiptContent?{
         let predicate = NSPredicate(format: "storeName == %@", storeName)
-        var itemsObj:Items = Items(items: [Item]())
+       // var itemsObj:Items = Items(items: [Item]())
         var itemNamesArr:[String] = []
         let context = managedContext()
                 let request = NSFetchRequest<NSFetchRequestResult>(entityName:"ReceiptContent")
@@ -47,7 +47,7 @@ class CoreDataContentManager: NSObject {
                       receiptObjs = result as! [ReceiptContent]
                     if(receiptObjs.count>0){
                         let receiptContentObj:ReceiptContent = receiptObjs[0] 
-                        itemsObj = receiptContentObj.items!
+                        //itemsObj = receiptContentObj.items!
                     }
             }
         
@@ -56,7 +56,11 @@ class CoreDataContentManager: NSObject {
         
                 print("Failed gettinf receipts with a storeName:",storeName)
               }
-        return itemsObj.items
+        
+        if(receiptObjs.count>0) {
+            return receiptObjs[0]
+        }
+        return nil
                      
     }
     

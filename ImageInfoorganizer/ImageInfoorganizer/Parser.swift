@@ -75,11 +75,13 @@ class Parser {
            
            var itemText = ""
            for eachword in allWordsInItemsContent {
-               
                if (eachword.containsPriceExp()){
                    if itemText.count>0 {
-                     itemListArray.append(itemText)
+                    if(!itemListArray.contains(itemText)) {
+                       itemListArray.append(itemText)
+                    }
                      itemText=""
+                    continue
                    }
                }
                let newItem = isWordAnItem(word: eachword)
