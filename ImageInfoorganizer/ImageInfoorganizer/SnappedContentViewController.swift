@@ -22,20 +22,17 @@ class SnappedContentViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        let obj = CoreDataContentManager.retrievemanagedObjsforEntity(entityName: "ReceiptContent")
-        for data in obj as! [ReceiptContent] {
-            
+        snappedReceipts = CoreDataContentManager.retrievemanagedObjsforEntity(entityName: "ReceiptContent") as! [ReceiptContent]
+        
+        for data in snappedReceipts {
             // displaying items in store
-            
             let itemsObj = data.value(forKey: "items") as! Items
             snappedReceiptItems.append(contentsOf:itemsObj.items)
             for item in snappedReceiptItems {
                 print("items name",item.itemName)
             }
-            
             //Displaying Store Name
             let storeName = data.value(forKey: "storeName") as! String
-            snappedReceipts.append(data)
         }
     }
     

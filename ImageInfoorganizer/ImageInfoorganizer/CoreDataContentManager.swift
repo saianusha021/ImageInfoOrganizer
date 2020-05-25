@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class CoreDataContentManager: NSObject {
+    
       
     static func createObjforEntity(entityName:String)->NSManagedObject {
          let context = managedContext()
@@ -20,25 +21,45 @@ class CoreDataContentManager: NSObject {
       }
       
       static func retrievemanagedObjsforEntity(entityName:String )->[NSManagedObject] {
-          
-          let context = managedContext()
-         let request = NSFetchRequest<NSFetchRequestResult>(entityName:entityName)
           var managedObjs = [NSManagedObject]()
-         do {
-             let result = try context.fetch(request)
-          if result.count != 0 {
-              managedObjs = result as! [NSManagedObject]
-          }
-          
-         } catch {
-             
-             print("Failed")
-         }
-          return managedObjs
+                 do {
+                   var  fetchedResults = try managedContext().fetch(ReceiptContent.fetchRequest())
+                     if fetchedResults.count != 0 {
+                         managedObjs = fetchedResults as! [NSManagedObject]
+                     }
+                 }
+                 catch {
+                     print ("fetch task failed")
+                 }
+                   return managedObjs
       }
+    static func getItemNamesForStoreName(storeName:String)->[Item]{
+        let predicate = NSPredicate(format: "storeName == %@", storeName)
+        var itemsObj:Items = Items(items: [Item]())
+        var itemNamesArr:[String] = []
+        let context = managedContext()
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName:"ReceiptContent")
+        request.predicate = predicate
+        var receiptObjs = [ReceiptContent]()
+        do {
+            let result = try context.fetch(request)
+                if result.count != 0 {
+                      receiptObjs = result as! [ReceiptContent]
+                    if(receiptObjs.count>0){
+                        let receiptContentObj:ReceiptContent = receiptObjs[0] 
+                        itemsObj = receiptContentObj.items!
+                    }
+            }
+        
+            }
+        catch {
+        
+                print("Failed gettinf receipts with a storeName:",storeName)
+              }
+        return itemsObj.items
+                     
+    }
     
-    
-      
       static func saveContext() {
           let context = managedContext()
           do {
@@ -53,3 +74,21 @@ class CoreDataContentManager: NSObject {
           return appDelegate.persistentContainer.viewContext
       }
 }
+
+
+
+//          let context = managedContext()
+//         let request = NSFetchRequest<NSFetchRequestResult>(entityName:entityName)
+//          var managedObjs = [NSManagedObject]()
+//
+//         do {
+//             let result = try context.fetch(request)
+//          if result.count != 0 {
+//              managedObjs = result as! [NSManagedObject]
+//          }
+//
+//         } catch {
+//
+//             print("Failed")
+//         }
+//          return managedObjs

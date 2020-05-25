@@ -13,29 +13,16 @@ import Vision
 
 class ReceiptTextHandler: RecognizedTextDataSource {
     
-//    var receiptContentObj:ReceiptContent
-   // var fullReceiptContentArray = [String]()
-    var defaultReceiptStartingWords:[String]
-    var defaultReceiptEndingWords:[String]
-   // var defaultDescriptionWords:[String]
-   // var itemListArray = [String]()
+    var defaultReceiptStartingWords:[String]=["grocery","item","qty","amount","price","cost"]
+    var defaultReceiptEndingWords:[String]=["tax","total","sub"]
     var itemsContentEndsAtPos:Int = 0
     var storeNamesArr = ["Burlington","Target","Costco","Indian Grocers","Sai Grocers","CVS Pharmacy","Rite Aid","Walmart","Buschs","Macys","JCPenny","Old Navy"]
-
    enum ItemContentStartingFrom: Int {
         case defaultWords
         case priceExp
         case notFound
     }
     
-     init() {
-       
-//           self.receiptContentObj = CoreDataContentManager.createObjforEntity(entityName: "ReceiptContent") as! ReceiptContent
-        defaultReceiptStartingWords = ["grocery","item","qty","amount","price","cost"]
-        defaultReceiptEndingWords = ["tax","total","sub"]
-//        defaultDescriptionWords = ["reg","regular","disc","discount","diso","markdown","/lb","each","tare","FW","lb","produce","lh","bal","new","sale","loyalty","misc","expires","Bottom of"]+defaultReceiptStartingWords+defaultReceiptEndingWords
-
-       }
     
    func addRecognizedText(recognizedText: [VNRecognizedTextObservation]) {
      // Create a full transcript to run analysis on.
@@ -51,43 +38,68 @@ class ReceiptTextHandler: RecognizedTextDataSource {
     let itemDetailString = dividedText.1
     let storeNameStr = dividedText.2
     var detailsObj = Parser.parseforDetailsInText(text: storeDetailString)
-    print("Store Name: ",detailsObj.name)
-    print("Store Name: ",storeNameStr)
-    var storeName = self.StoreName(storeNameStr: storeNameStr)
-    if(!storeName.isEmpty) {
-        detailsObj.name = storeName
-    }
-    var itemsArray=Parser.parseForItemsInItemsString(itemDetailsString:itemDetailString)
-    
-    saveTheItemsToCoreData(detailsObj:detailsObj,items: itemsArray)
+    print("Initial Store Name: ",detailsObj.name)
+         print("Store Name Str: ",storeNameStr)
+         let storeName = self.StoreName(storeNameStr: storeNameStr)
+         if(!storeName.isEmpty) {
+          detailsObj.name = storeName.localizedUppercase
+         }
+      print("final StoreName:",detailsObj.name)
+    let itemsArray=Parser.parseForItemsInItemsString(itemDetailsString:itemDetailString)
+    let filteredItemsArr = filteredItems(itemsArr: itemsArray, forStore: detailsObj.name)
+    saveTheItemsToCoreData(detailsObj:detailsObj,items:filteredItemsArr)
    }
-    
-    func StoreName(storeNameStr:String)->String {
-        
-        let strNameStrLwrCased = storeNameStr.lowercased()
-        for storeName in storeNamesArr {
-             if(strNameStrLwrCased.contains(storeName)) {
-                           return storeName
-                }
-            var storeNamePartsArr = storeName.components(separatedBy: .newlines)
-             
-            for storeNamePart in storeNamePartsArr {
-                let midIndex:Int = (storeNamePart.count/2)
-                for i in 0...midIndex {
-                    let StoreNamePartSubStrfromStart = storeNamePart.substring(from: i)
-                    if(strNameStrLwrCased.localizedCaseInsensitiveContains(StoreNamePartSubStrfromStart)) {
-                               return storeName
-                    }
-                    let StoreNamePartSubStrfromEnd = storeNamePart.substring(to:storeNamePart.count-1-i)
-                    if(strNameStrLwrCased.localizedCaseInsensitiveContains(StoreNamePartSubStrfromEnd)) {
-                               return storeName
-                    }
-                }
+    func filteredItems(itemsArr:[String],forStore:String)->[String] {
+        var itemNamesArr:[String] = itemsArr
+        var existingItemNames = CoreDataContentManager.getItemNamesForStoreName(storeName: forStore)
+        for item in existingItemNames {
+            if(itemsArr.contains(item.itemName)) {
+              var index = itemsArr.firstIndex(of: item.itemName)
+                itemNamesArr.remove(at: index!)
             }
         }
-       return ""
+        return itemNamesArr
     }
-
+    func StoreName(storeNameStr:String)->String {
+        let strNameStrLwrCased = storeNameStr.lowercased()
+        var matchedStoreName = ""
+        var matchedIndex = storeNameStr.count
+        for storeName in storeNamesArr {
+            var strNameLwrCased = storeName.lowercased()
+            if(strNameStrLwrCased.contains(strNameLwrCased)) {
+                           return storeName
+                }
+            
+                let midIndex:Int = strNameLwrCased.count/2
+                for i in 0...midIndex {
+                    let storeNameSubStrfromStart = strNameLwrCased.substring(from: i)
+                    print(storeNameSubStrfromStart)
+                    if(strNameStrLwrCased.contains(storeNameSubStrfromStart)) {
+                        var  newMatchedIndex = strNameStrLwrCased.indices(of:storeNameSubStrfromStart.lowercased())[0]
+                        if(newMatchedIndex<matchedIndex) {
+                            matchedIndex = newMatchedIndex
+                            matchedStoreName = storeName
+                        }
+                         break
+                    }
+                    let storeNameSubStrfromEnd = strNameLwrCased.substring(to:strNameLwrCased.count-1-i)
+                    if(strNameStrLwrCased.contains(storeNameSubStrfromEnd)) {
+                        print(storeNameSubStrfromEnd)
+                        var  newMatchedIndex = strNameStrLwrCased.indices(of:storeNameSubStrfromEnd.lowercased())[0]
+                       if(newMatchedIndex<matchedIndex) {
+                           matchedIndex = newMatchedIndex
+                           matchedStoreName = storeName
+                        
+                       }
+                        break
+                    }
+                }
+        }
+       return matchedStoreName
+    }
+    
+   
+    
     func divideReceiptContent(allText:String)->(String,String,String) {
         var storeDetailsString = ""
         var itemDetailsString = ""
@@ -178,6 +190,12 @@ class ReceiptTextHandler: RecognizedTextDataSource {
         return (false,.notFound)
     }
     
+//    func listOfItemNamesForStore(storeName:String)->[Item]{
+//        let itemsObj:Items = CoreDataContentManager.getItemsForStoreName(storeName: storeName)
+//        return itemsObj.items
+//
+//    }
+    
     func saveTheItemsToCoreData(detailsObj:Details,items:[String]) {
         
         var receiptContentObj = CoreDataContentManager.createObjforEntity(entityName: "ReceiptContent") as! ReceiptContent
@@ -194,7 +212,7 @@ class ReceiptTextHandler: RecognizedTextDataSource {
                itemsArray.append(item)
            }
           let items = Items(items: itemsArray)
-           receiptContentObj.items = items
+          receiptContentObj.items = items
           CoreDataContentManager.saveContext()
     }
     

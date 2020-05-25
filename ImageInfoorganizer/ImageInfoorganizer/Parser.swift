@@ -83,9 +83,8 @@ class Parser {
                    }
                }
                let newItem = isWordAnItem(word: eachword)
-               if  (newItem.0) {
+            if  (newItem.0 && newItem.1.count>0) {
                    itemText.append(newItem.1+" ")
-                   
                }
            }
            if (itemText.count>0) {
